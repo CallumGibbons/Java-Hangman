@@ -1,24 +1,28 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 public class WordSelector {
-    private static final String[] WORDS = {
-            "ABSTRACT", "BANANA", "COMPLEX", "DISTINCT", "ENIGMA", "FOCUS", "GALAXY", "HORIZON", "IMPACT",
-            "JAZZ", "KNIGHT", "LABYRINTH", "MAGIC", "NEBULA", "OCEAN", "PIXEL", "QUIET", "RHYTHM", "SYMBOL",
-            "TREASURE", "UNIQUE", "VICTORY", "WIZARD", "XENON", "YACHT", "ZENITH", "ALCHEMY", "BEACON",
-            "CYCLONE", "DRAGON", "ECLIPSE", "FROST", "GARNET", "HARMONY", "ILLUSION", "JUBILEE", "KERNEL",
-            "LEGEND", "MYSTERY", "NEXUS", "ORACLE", "PHANTOM", "QUARTZ", "REVENUE", "SPECTRUM", "TEMPEST",
-            "UMBRELLA", "VORTEX", "WHISPER", "XENOPHOBIA", "YEARLING", "ZEALOT", "ACUMEN", "BRILLIANT",
-            "CALIBER", "DYNAMIC", "EPIC", "FORTUNE", "GLOW", "HEROIC", "INSIGHT", "JOVIAL", "KINETIC",
-            "LUCKY", "MELODY", "NOBLE", "OPTIMISM", "PIONEER", "QUINTESSENCE", "RADIANT", "SERENITY",
-            "TRIUMPH", "UTILITY", "VALOR", "WONDER", "XENOGENESIS", "YOUTHFUL", "ZEALOUS", "AURA", "BRAVO",
-            "CHAMPION", "DAZZLE", "ELEGANCE", "FLAWLESS", "GRANDEUR", "HORIZON", "INFINITY", "JOVIALITY",
-            "KINGDOM", "LEGACY", "MONUMENT", "NIRVANA", "ODYSSEY", "PARADISE", "QUASAR", "REVELATION",
-            "SYMPHONY", "THRIVE", "UTOPIA", "VICTORIOUS", "WONDROUS"
-    };
+    private final Scanner scanner;
+
+    public WordSelector() {
+        try {
+            scanner = new Scanner(new File("C:\\Users\\Callum\\nology\\Yuma\\Java\\Hangman\\src\\words.txt"));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public String selectRandomWord() {
-        Random random = new Random();
-        return WORDS[random.nextInt(WORDS.length)];
+        List<String> words = new ArrayList<>();
+        while (scanner.hasNext()) {
+            words.add(scanner.nextLine());
+        }
+        Random rand = new Random();
+        String selectedWord = words.get(rand.nextInt(words.size()));
+        return selectedWord.toUpperCase();
     }
 }
-

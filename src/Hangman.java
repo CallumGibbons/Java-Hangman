@@ -39,7 +39,7 @@ public class Hangman {
         System.out.println("Tries left: " + gameState.getTriesLeft());
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         Hangman game = new Hangman();
         game.play();
     }
