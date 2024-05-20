@@ -2,9 +2,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameState {
-    private String wordToGuess;
-    private List<Character> guessedWord;
-    private List<Character> guessedLetters;
+    private final String wordToGuess;
+    private final List<Character> guessedWord;
+    private final List<Character> guessedLetters;
     private int triesLeft;
 
     public GameState(String wordToGuess) {
@@ -15,7 +15,7 @@ public class GameState {
         }
         this.guessedLetters = new ArrayList<>();
         this.triesLeft = 6;
-    };
+    }
 
     public boolean isGameOver() {
         return triesLeft <= 0 || isWordGuessed();
@@ -56,4 +56,4 @@ public class GameState {
     public int getTriesLeft() {
         return triesLeft;
     }
-};
+}
