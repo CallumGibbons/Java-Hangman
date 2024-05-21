@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class UserInputHandler {
+    // Get a valid letter guess from the user
     public char getUserGuess(Scanner scanner) {
         String input;
         while (true) {
@@ -14,6 +15,7 @@ public class UserInputHandler {
             } else if (!Character.isLetter(input.charAt(0))) {
                 System.out.println("Invalid input. Please enter a letter.");
             } else {
+                // Valid input received
                 break;
             }
         }

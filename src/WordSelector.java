@@ -8,6 +8,7 @@ public class WordSelector {
     public WordSelector() {
         words = new ArrayList<>();
         try {
+            // Attempt to read words from the file
             Scanner scanner = new Scanner(new File("C:\\Users\\Callum\\nology\\Yuma\\Java\\Hangman\\src\\words.txt"));
             while (scanner.hasNext()) {
                 words.add(scanner.nextLine().trim().toUpperCase());
