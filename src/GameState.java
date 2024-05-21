@@ -56,4 +56,8 @@ public class GameState {
     public int getTriesLeft() {
         return triesLeft;
     }
+
+    public List<Character> getGuessedLetters() {
+        return guessedLetters;
+    }
 }

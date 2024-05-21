@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
 public class UserInputHandler {
-
     public char getUserGuess(Scanner scanner) {
         String input;
         while (true) {

@@ -1,45 +1,54 @@
 import java.util.Scanner;
 
 public class Hangman {
-    private final GameState gameState;
     private final UserInputHandler inputHandler;
 
     public Hangman() {
-        WordSelector wordSelector = new WordSelector();
-        this.gameState = new GameState(wordSelector.selectRandomWord());
         this.inputHandler = new UserInputHandler();
     }
 
     public void play() {
         Scanner scanner = new Scanner(System.in);
 
-        while (!gameState.isGameOver()) {
-            displayGameState();
-            char guess = inputHandler.getUserGuess(scanner);
+        do {
+            WordSelector wordSelector = new WordSelector();
+            GameState gameState = new GameState(wordSelector.selectRandomWord());
 
-            if (gameState.isLetterGuessed(guess)) {
-                System.out.println("You have already guessed that letter. Try again.");
-                continue;
+            while (!gameState.isGameOver()) {
+                displayGameState(gameState);
+                char guess = inputHandler.getUserGuess(scanner);
+
+                if (gameState.isLetterGuessed(guess)) {
+                    System.out.println("You have already guessed that letter. Try again.");
+                    continue;
+                }
+
+                gameState.guessLetter(guess);
             }
 
-            gameState.guessLetter(guess);
-        }
-
-        if (gameState.isWordGuessed()) {
-            System.out.println("Congratulations! You guessed the word: " + gameState.getWordToGuess());
-        } else {
-            System.out.println("Sorry, you've run out of tries. The word was: " + gameState.getWordToGuess());
-        }
+            if (gameState.isWordGuessed()) {
+                System.out.println("Congratulations! You guessed the word: " + gameState.getWordToGuess());
+            } else {
+                System.out.println("Sorry, you've run out of tries. The word was: " + gameState.getWordToGuess());
+            }
+        } while (shouldPlayAgain(scanner));
 
         scanner.close();
     }
 
-    private void displayGameState() {
+    private void displayGameState(GameState gameState) {
         System.out.println("Word to guess: " + gameState.getGuessedWord());
         System.out.println("Tries left: " + gameState.getTriesLeft());
+        System.out.println("Guessed letters: " + gameState.getGuessedLetters());
     }
 
-    public static void main(String[] args){
+    private boolean shouldPlayAgain(Scanner scanner) {
+        System.out.print("Do you want to play again? (yes/no): ");
+        String response = scanner.nextLine().trim().toLowerCase();
+        return response.equals("yes") || response.equals("y");
+    }
+
+    public static void main(String[] args) {
         Hangman game = new Hangman();
         game.play();
     }
