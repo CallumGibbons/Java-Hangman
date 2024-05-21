@@ -1,4 +1,5 @@
 Hangman Game
+
 This is a simple Hangman game implemented in Java. The game selects a random word and allows the player to guess letters to reveal the word. The player has a limited number of attempts to guess the word correctly. As wrong guesses are made, a hangman is progressively drawn.
 
 Features
