@@ -1,8 +1,23 @@
 import java.util.Scanner;
 
 public class UserInputHandler {
+
     public char getUserGuess(Scanner scanner) {
-        System.out.print("Guess a letter: ");
-        return scanner.next().toUpperCase().charAt(0);
+        String input;
+        while (true) {
+            System.out.print("Guess a letter: ");
+            input = scanner.nextLine().trim().toUpperCase();
+
+            if (input.isEmpty()) {
+                System.out.println("Input cannot be empty. Please enter a single letter.");
+            } else if (input.length() != 1) {
+                System.out.println("Please enter a single letter.");
+            } else if (!Character.isLetter(input.charAt(0))) {
+                System.out.println("Invalid input. Please enter a letter.");
+            } else {
+                break;
+            }
+        }
+        return input.charAt(0);
     }
 }
