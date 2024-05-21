@@ -34,6 +34,7 @@ public class Hangman {
             if (gameState.isWordGuessed()) {
                 System.out.println("Congratulations! You guessed the word: " + gameState.getWordToGuess());
             } else {
+                displayHangman(0);
                 System.out.println("Sorry, you've run out of tries. The word was: " + gameState.getWordToGuess());
             }
         } while (shouldPlayAgain(scanner));  // Prompt the user to play again

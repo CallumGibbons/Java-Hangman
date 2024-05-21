@@ -11,7 +11,10 @@ public class WordSelector {
             // Attempt to read words from the file
             Scanner scanner = new Scanner(new File("C:\\Users\\Callum\\nology\\Yuma\\Java\\Hangman\\src\\words.txt"));
             while (scanner.hasNext()) {
-                words.add(scanner.nextLine().trim().toUpperCase());
+                String word = scanner.nextLine().trim().toUpperCase();
+                if (word.matches("[A-Z]+")) {  // Ensure the word contains only letters
+                    words.add(word);
+                }
             }
             scanner.close();
         } catch (FileNotFoundException e) {
